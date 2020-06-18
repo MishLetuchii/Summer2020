@@ -1,5 +1,7 @@
-C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\Cathegories.java
-C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\CathegoriesRepository.java
-C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\Items.java
-C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\Controller.java
+C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\rest\CategoriesController.java
+C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\repositories\CategoriesRepository.java
+C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\rest\ItemsController.java
 C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\Application.java
+C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\domain\Categories.java
+C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\domain\Items.java
+C:\Users\Никита\IdeaProjects\jpa-trying\src\main\java\pack\repositories\ItemsRepository.java
