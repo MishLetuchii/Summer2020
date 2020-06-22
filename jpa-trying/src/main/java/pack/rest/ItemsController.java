@@ -53,8 +53,8 @@ public class ItemsController {
     public ResponseEntity<Object> createItem(@RequestBody Items item) {
         Items savedItem = itemsRepository.save(item);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{itemId}")
-                .buildAndExpand(savedItem.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{itemId}").buildAndExpand(savedItem.getId()).toUri();
 
         return ResponseEntity.created(location).build();
     }
@@ -66,9 +66,7 @@ public class ItemsController {
 
         if (!itemOptional.isPresent())
             return ResponseEntity.notFound().build();
-
         item.setId(itemId);
-
         itemsRepository.save(item);
 
         return ResponseEntity.noContent().build();

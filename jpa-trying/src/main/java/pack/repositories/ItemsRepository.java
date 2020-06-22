@@ -1,6 +1,7 @@
 package pack.repositories;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import pack.domain.Categories;
 import pack.domain.Items;
 
 public interface ItemsRepository extends CrudRepository<Items, Long> {

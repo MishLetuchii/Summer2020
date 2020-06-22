@@ -9,6 +9,8 @@ import pack.domain.Items;
 import pack.repositories.CategoriesRepository;
 import pack.repositories.ItemsRepository;
 
+import java.util.List;
+
 @ComponentScan
 @EnableAutoConfiguration
 public class Application {
@@ -22,7 +24,7 @@ public class Application {
         Categories screens = new Categories("Мониторы", "Каталог мониторов для пк");
         Categories keyboards = new Categories("Устройства ввода", "Каталог устройств ввода (мыши, клавиатуры)");
         Categories audioSystems = new Categories("Аудиоаппаратура", "Каталог устройств для воспроизведения аудио");
-        //Сохраняем созданные категории в бд
+        //Сохраняем созданные категории в репозитории
         сategoriesRepository.save(screens);
         сategoriesRepository.save(keyboards);
         сategoriesRepository.save(audioSystems);
@@ -33,7 +35,7 @@ public class Application {
         Items Canton_Movie_365 = new Items(4601, "Canton Movie 365", 10, 66000, "Формат системы 5.1", audioSystems);
         Items Defender_HB_420 = new Items(4602, "Defender HB-420", 45, 300, "Мембранная клавиатура Defender HB-420", keyboards);
         Items Logitech_G915 = new Items(4603, " Logitech G915", 18, 18499, "Механическая клавиатура  Logitech G915",keyboards);
-        //сохраняем объекты в бд
+        //сохраняем объекты в репозитории
         itemsRepository.save(HP_19ka);
         itemsRepository.save(Nec_MultiSync);
         itemsRepository.save(Aceline_ASP100);
@@ -41,7 +43,7 @@ public class Application {
         itemsRepository.save(Defender_HB_420);
         itemsRepository.save(Logitech_G915);
 
-        context.close();
+      // context.close();
     }
 
 }

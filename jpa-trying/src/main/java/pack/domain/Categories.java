@@ -1,4 +1,5 @@
 package pack.domain;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -6,8 +7,9 @@ import java.util.List;
 public class Categories {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;//Id категории, генерируем автоматически
+
     private String name;//название категории
     private String description;//описание категории
 
