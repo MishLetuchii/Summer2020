@@ -18,7 +18,7 @@ public class Application {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-        CategoriesRepository сategoriesRepository = context.getBean(CategoriesRepository.class);
+      /*  CategoriesRepository сategoriesRepository = context.getBean(CategoriesRepository.class);
         ItemsRepository itemsRepository = context.getBean(ItemsRepository.class);
         //Создаем несколько категорий
         Categories screens = new Categories("Мониторы", "Каталог мониторов для пк");
@@ -43,7 +43,7 @@ public class Application {
         itemsRepository.save(Defender_HB_420);
         itemsRepository.save(Logitech_G915);
 
-      // context.close();
+      // context.close();*/
     }
 
 }
