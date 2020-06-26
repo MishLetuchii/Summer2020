@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <title>Компьютерные комплетующие</title>
+    <link rel="stylesheet" href="/static/css/grid.css">
+</head>
+<body>
+<div class="row">
+    <div class="col-1">
+        <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
+            <h3>Категории</h3>
+            <ul>
+                <li><a th:href="@{/main}">(Без категорий)</a></li>
+            </ul>
+            <div class="app">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+                <div class="item">item 4</div>
+                <div class="item">item 5</div>
+                <div th:each="category: ${categories}">
+                <li><!--<img height="30px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="30px">&nbsp;&nbsp;-->
+                    <a th:href="@{/main?selcat={id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
+                </li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

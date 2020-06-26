@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import pack.domain.Categories;
 import pack.repositories.CategoriesRepository;
+import org.springframework.ui.Model;
 
 
 @RestController
@@ -20,13 +21,13 @@ public class CategoriesController {
 
     @GetMapping(value = "/categories")
     public List<Categories> getAllCategories() {
+
         return categoriesRepository.findAll();
     }
 
     @GetMapping(value = "/categories/{categoryId}")
     public Categories getCategoryByID(@PathVariable Long categoryId) {
         Optional<Categories> category = categoriesRepository.findById(categoryId);
-
         return category.get();
     }
 

@@ -1,6 +1,8 @@
 package pack.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Items {
     private float price; //Цена предмета
     private String description; //Описание предмета
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "CATEGORY_ID_F", nullable = false)
     private Categories category; //категория, к которой относится предмет, связь один-ко-многим (категории-предметы)
