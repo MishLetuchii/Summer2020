@@ -7,14 +7,14 @@
 <div class="row">
     <div class="col-1">
         <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
-            <h3>Категории</h3>
+            <h3 th:text="${items[1].getCategory().getName()}"></h3>
             <div class="app" style=" display: grid;
                  grid-column-gap: 15px;
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
-                <ul th:each="category: ${categories}">
-                <li><!--<img height="30px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="30px">&nbsp;&nbsp;-->
-                    <a th:href="@{/main/categories/{id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
-                </li>
+                <ul th:each="item: ${items}">
+                    <li><!--<img height="30px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="30px">&nbsp;&nbsp;-->
+                        <a th:href="@{/main/items/{id}(id=${item.getId()})}" th:utext="${item.getName()}"></a>
+                    </li>
                 </ul>
             </div>
         </div>

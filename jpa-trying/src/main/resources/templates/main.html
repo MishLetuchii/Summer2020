@@ -13,7 +13,7 @@
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
                 <ul th:each="category: ${categories}">
                 <li><!--<img height="30px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="30px">&nbsp;&nbsp;-->
-                    <a th:href="@{/main?selcat={id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
+                    <a th:href="@{/main/categories/{id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
                 </li>
                 </ul>
             </div>

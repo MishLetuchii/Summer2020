@@ -18,7 +18,7 @@ public class Categories {
         return id;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)//все операции изменения в коллекции=изменения в бд
     //выборка из бд только при обращении к элементу коллекции, удаление в коллекции=удаление в бд

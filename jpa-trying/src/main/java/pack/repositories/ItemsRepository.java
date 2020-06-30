@@ -7,7 +7,7 @@ import pack.domain.Items;
 public interface ItemsRepository extends CrudRepository<Items, Long> {
 
     List<Items> findByName(String name);// поиск по названию предмета
-
+    List<Items> findByCategory(Categories category);//Поиск по категории
     Items findById(long id);//поиск по id предмета
 
     void deleteById(long id); //удаление по id предмета
