@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <title>Компьютерные комплетующие</title>
+    <title th:text="${items[1].getCategory().getName()}"></title>
     <link rel="stylesheet" href="./grid.css">
 </head>
 <body>
@@ -8,6 +8,7 @@
     <div class="col-1">
         <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
             <h3 th:text="${items[1].getCategory().getName()}"></h3>
+            <a th:href="@{/adm/main}" th:utext="Назад"></a>
             <div class="app" style=" display: grid;
                  grid-column-gap: 15px;
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >

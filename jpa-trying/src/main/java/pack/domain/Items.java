@@ -18,6 +18,7 @@ public class Items {
     private float price; //Цена предмета
     private String description; //Описание предмета
 
+
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "CATEGORY_ID_F", nullable = false)

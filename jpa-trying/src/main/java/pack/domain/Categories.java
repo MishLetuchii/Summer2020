@@ -14,9 +14,13 @@ public class Categories {
     private String name;//название категории
     private String description;//описание категории
 
-    public long getId() {
-        return id;
-    }
+    @Lob
+    private byte[] image;
+    @Transient
+    private String imageString;
+
+
+
 
     //@JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,
@@ -24,13 +28,16 @@ public class Categories {
     //выборка из бд только при обращении к элементу коллекции, удаление в коллекции=удаление в бд
     private List<Items> items;//предметы, входящие в категорию,связь один-ко-многим (Категория-предметы)
 
-    protected Categories() {} //конструктор для JPA
+    public Categories() {} //конструктор для JPA
 
     public Categories(String name, String description) {//конструктор для сохранения экземпляра в бд
         this.name = name;
         this.description = description;
     }
 
+    public long getId() {
+        return id;
+    }
 
     public void setId(long id) {
         this.id = id;
@@ -59,6 +66,15 @@ public class Categories {
     public void setItems(List<Items> items) {
         this.items = items;
     }
+     
+    public byte[] getImage() {  return image; }
+
+    public void setImage(byte[] image) {  this.image = image;  }
+
+    public String getImageString() {  return imageString;  }
+
+    public void setImageString(String imageString) { this.imageString = imageString;  }
+
 
     @Override
     public String toString() {

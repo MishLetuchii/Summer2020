@@ -6,17 +6,15 @@
     <title>Title</title>
 </head>
 <body>
-                </div>
-                <div class="col-9">
-                    <i><span th:utext="${'Артикул: '+item.getArticul()}"></span></i><br>
-                    <span style="font-weight:bold; font-size:30px" th:utext="${item.getName()}"></span><br>
-                    <span style="font-weight:bold; font-size:25px"
-                          th:utext="${item.getPrice()+' ₽'}"></span><br><br>
-                    <span th:utext="${item.getDescription()}"></span><br><br>
-                    <span style="font-weight:bold; font-size:17px">Количество на складе:</span> <span
-                        style="font-size:20px" th:utext="${item.getCount()}"></span><br><br>
-
-                    <a class="btn btn-primary" th:href="@{/main}">На главную страницу</a>
-                </div>
+    <div class="col-9">
+        <i><span th:utext="${'Артикул: '+item.getArticul()}"></span></i><br>
+            <span style="font-weight:bold; font-size:30px" th:utext="${item.getName()}"></span><br>
+            <span style="font-weight:bold; font-size:25px"
+                    th:utext="${item.getPrice()+' ₽'}"></span><br><br>
+            <span th:utext="${item.getDescription()}"></span><br><br>
+            <span style="font-weight:bold; font-size:17px">Количество на складе:</span> <span
+                style="font-size:20px" th:utext="${item.getCount()}"></span><br><br>
+            <a class="btn btn-primary" th:href="@{/main}">На главную страницу</a>
+    </div>
 </body>
 </html>
