@@ -1,5 +1,6 @@
 package pack.rest;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -25,6 +27,11 @@ public class AdminController {
     public String main(Model model) {
 
         List<Categories> categories = categoriesRepository.findAll();
+
+        for (Categories category : categories) {
+            byte[] image = category.getImage();
+            category.setImageString(Base64.encodeBase64String(image));
+        }
 
         model.addAttribute("categories", categories);
         return "admin-main";
@@ -51,8 +58,6 @@ public class AdminController {
         return "admin-selected-items";
     }
 
-
-
     @GetMapping(value = {"/adm/categories/add"})
     public String adminAddCategoryPage(Model model) {
         Categories ctg = new Categories();
@@ -63,10 +68,41 @@ public class AdminController {
     }
 
     @PostMapping(value = {"/adm/categories/add"})
-    public String adminAddCategory(Model model, @ModelAttribute("category") Categories ctg)
-        /*,@RequestParam("img") MultipartFile file) throws IOException*/ {
+    public String adminAddCategory(Model model, @ModelAttribute("category") Categories ctg
+        ,@RequestParam("img") MultipartFile file) throws IOException {
 
-        /*ctg.setImage(file.getBytes());*/
+        ctg.setImage(file.getBytes());
+        categoriesRepository.save(ctg);
+
+        return "redirect:/adm/main";
+    }
+
+    @RequestMapping(value = "/adm/categories/delete/{categoryId}")
+    public String adminDeleteCategory(Model model, @PathVariable long categoryId) {
+        categoriesRepository.deleteById(categoryId);
+
+        return "redirect:/adm/main";
+    }
+
+    @GetMapping(value = {"/adm/categories/change/{categoryId}"})
+    public String adminChangeCategoryPage(Model model, @PathVariable long categoryId) {
+        Categories ctg =categoriesRepository.findById(categoryId);
+
+        model.addAttribute("category", ctg);
+
+        return "change-category";
+    }
+
+
+
+    @PostMapping(value = {"/adm/categories/change/{categoryId}"})
+    public String adminChangeCategory(Model model, @PathVariable long categoryId,
+      @ModelAttribute("category") Categories ctg,@RequestParam("img") MultipartFile file) throws IOException {
+        Categories helpCtg =categoriesRepository.findById(categoryId);
+        List<Items> items = itemsRepository.findByCategory(helpCtg);
+        ctg.setId(categoryId);
+        ctg.setItems(items);
+        ctg.setImage(file.getBytes());
         categoriesRepository.save(ctg);
 
         return "redirect:/adm/main";

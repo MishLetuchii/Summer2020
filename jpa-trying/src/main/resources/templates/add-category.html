@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Добавление категории</title>
 </head>
 <body>
-<form class="form-horizontal"
+<form class="form-horizontal" enctype="multipart/form-data"
       method="POST" th:action="@{/adm/categories/add}" th:object="${category}">
     <div style="width: 40rem;">
         <table class="table-no-bordered">
@@ -24,7 +24,19 @@
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
             </tr>
-         
+            <tr>
+                <td>Изображение: &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                    <div class="custom-file">
+                        <input class="custom-file-input" id="validatedCustomFile" name="img"
+                               type="file">
+                        <label class="custom-file-label" for="validatedCustomFile">Выберите файл...</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
         </table>
         <br>
         <div align="center" style="margin-bottom:20px"><a class="btn btn-primary"
