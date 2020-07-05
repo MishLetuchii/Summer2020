@@ -53,7 +53,6 @@ public class AdminItemsController {
             ,@RequestParam("img") MultipartFile file, @RequestParam("categoryId") long categoryId) throws IOException {
 
         Categories ctg =categoriesRepository.findById(categoryId);
-
         item.setImage(file.getBytes());
         item.setCategory(ctg);
         itemsRepository.save(item);
@@ -101,6 +100,7 @@ public class AdminItemsController {
         item.setImage(file.getBytes());
         itemsRepository.save(item);
         redirectAttributes.addAttribute("ctgId", ctg.getId());
+
         return "redirect:/adm/main/categories/{ctgId}";
     }
 }

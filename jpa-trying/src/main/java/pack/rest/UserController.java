@@ -42,8 +42,13 @@ public class UserController {
 
         Categories categ = categoriesRepository.findById(CtgId);
         List<Items> items= itemsRepository.findByCategory(categ);
+        for (Items item : items) {
+            byte[] image = item.getImage();
+            item.setImageString(Base64.encodeBase64String(image));
+        }
         model.addAttribute("items", items);
         model.addAttribute("category",categ);
+
 
         return "user-main-ctg";
     }
@@ -53,6 +58,8 @@ public class UserController {
     public String userItemPage(Model model,@PathVariable long ItemId) {
 
         Items item= itemsRepository.findById(ItemId);
+        byte[] image = item.getImage();
+        item.setImageString(Base64.encodeBase64String(image));
         model.addAttribute("item", item);
 
         return "selected-items";
