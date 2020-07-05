@@ -1,0 +1,24 @@
+2020-07-05 16:26:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"
+Value too long for column "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"; SQL statement:
+insert into items (articul, category_id_f, count, description, image, name, price, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2020-07-05 16:27:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"
+Value too long for column "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"; SQL statement:
+insert into items (articul, category_id_f, count, description, image, name, price, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2020-07-05 16:27:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"
+Value too long for column "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"; SQL statement:
+insert into items (articul, category_id_f, count, description, image, name, price, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2020-07-05 16:43:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"
+Value too long for column "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"; SQL statement:
+insert into items (articul, category_id_f, count, description, image, name, price, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2020-07-05 16:44:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"
+Value too long for column "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"; SQL statement:
+insert into items (articul, category_id_f, count, description, image, name, price, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2020-07-06 02:25:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"
+Value too long for column "DESCRIPTION VARCHAR(255)": "STRINGDECODE('\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0440 AMD Sempron 2650 \u0445\u0430\u0440\u0430\u043a\u0442\u0435... (423)"; SQL statement:
+insert into items (articul, category_id_f, count, description, image, name, price, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22001-200]

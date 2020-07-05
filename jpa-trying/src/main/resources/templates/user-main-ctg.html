@@ -1,22 +1,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <title th:text="${items[1].getCategory().getName()}"></title>
+    <title th:text="${category.getName()}"></title>
     <link rel="stylesheet" href="./grid.css">
 </head>
 <body>
 <div class="row">
     <div class="col-1">
         <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
-            <h3 th:text="${items[1].getCategory().getName()}"></h3>
-            <a th:href="@{/adm/main}" th:utext="Назад"></a>
+            <h3 th:text="${category.getName()}"></h3>
+            <div>
+                <a th:text="${category.getDescription()}"></a>
+            </div>
+            <a th:href="@{/main}" th:utext="Назад"></a>
             <div class="app" style=" display: grid;
                  grid-column-gap: 15px;
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
-                <ul th:each="item: ${items}">
-                    <li><!--<img height="30px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="30px">&nbsp;&nbsp;-->
-                        <a th:href="@{/main/items/{id}(id=${item.getId()})}" th:utext="${item.getName()}"></a>
-                    </li>
-                </ul>
+                <div th:each="item: ${items}">
+                    <div>
+                        <img height="100px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="100px">&nbsp;&nbsp;
+                        <div class="card">
+                            <a th:href="@{/main/items/{id}(id=${item.getId()})}" th:utext="${item.getName()}"></a>
+                        </div>
+                        <a th:utext = "${item.getPrice()}+' ₽'"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

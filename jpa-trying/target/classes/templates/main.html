@@ -11,11 +11,12 @@
             <div class="app" style=" display: grid;
                  grid-column-gap: 15px;
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
-                <ul th:each="category: ${categories}">
-                <li><!--<img height="30px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="30px">&nbsp;&nbsp;-->
-                    <a th:href="@{/main/categories/{id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
-                </li>
-                </ul>
+                <div th:each="category: ${categories}">
+                    <img height="100px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="100px">&nbsp;&nbsp;
+                    <div>
+                        <a th:href="@{/main/categories/{id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

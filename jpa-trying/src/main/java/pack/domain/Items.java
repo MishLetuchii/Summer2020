@@ -18,13 +18,17 @@ public class Items {
     private float price; //Цена предмета
     private String description; //Описание предмета
 
+    @Lob
+    private byte[] image;
+    @Transient
+    private String imageString;
 
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "CATEGORY_ID_F", nullable = false)
     private Categories category; //категория, к которой относится предмет, связь один-ко-многим (категории-предметы)
 
-    protected Items() {} //Конструктор, необходим для JPA
+    public Items() {} //Конструктор, необходим для JPA
 
     //конструктор, которым инициализируется предмет(позиция в категории)
     public Items(long articul, String name, long count, float price, String description, Categories category) {
@@ -58,6 +62,7 @@ public class Items {
     }
 
     public void setCount(long count) {
+        if(count<0) count=0;
         this.count = count;
     }
 
@@ -92,6 +97,15 @@ public class Items {
     public void setId(long id) {
         this.id = id;
     }
+
+    public byte[] getImage() {  return image; }
+
+    public void setImage(byte[] image) {  this.image = image;  }
+
+    public String getImageString() {  return imageString;  }
+
+    public void setImageString(String imageString) { this.imageString = imageString;  }
+
 
     @Override
     public String toString() {

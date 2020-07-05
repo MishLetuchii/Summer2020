@@ -5,6 +5,7 @@
     <title>Изменение категории</title>
 </head>
 <body>
+<div align="center">
 <form class="form-horizontal" enctype="multipart/form-data"
       method="POST" th:action="@{/adm/categories/change/{id}(id=${category.getId()})}"
       th:object="${category}">
@@ -45,5 +46,6 @@
                                                       th:href="@{/adm/main/categories/{ctgId}(ctgId=${category.getId()})}">Назад</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <input class="btn btn-success" type="submit" value="Сохранить изменения"/></div>
 </form>
+</div>
 </body>
 </html>

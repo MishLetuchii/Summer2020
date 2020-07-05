@@ -35,6 +35,11 @@ public class Categories {
         this.description = description;
     }
 
+    public void addItem (Items item)
+    {
+        this.items.add(item);
+    }
+
     public long getId() {
         return id;
     }
