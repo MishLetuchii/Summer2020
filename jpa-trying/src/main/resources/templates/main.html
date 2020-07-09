@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Компьютерные комплетующие</title>
     <link rel="stylesheet" href="./grid.css">
@@ -8,6 +8,21 @@
     <div class="col-1">
         <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
             <h3 align="center">Категории товаров</h3>
+<!--
+            <div sec:authorize="!isAuthenticated()" style="text-align: right;margin-right: 20px;">
+                <span><a class="btn btn-primary" th:href="@{/login}"><i aria-hidden="true" class="fas fa-sign-in-alt"></i>  Вход</a></span>&nbsp;&nbsp;<span><a
+                    class="btn btn-primary" th:href="@{/registration}"><i aria-hidden="true" class="fas fa-user-plus"></i>  Регистрация</a></span>
+            </div>
+
+            <div sec:authorize="isAuthenticated()" style="text-align: right;margin-right: 20px;">
+             <span><span style="color: black">Вы вошли как: <b><span
+            sec:authentication="userName"></span></b></span>&nbsp;&nbsp;<span sec:authorize="hasRole('ROLE_ADMIN')">
+                 <a
+            th:href="@{/logout}"><i aria-hidden="true" class="fas fa-sign-out-alt"></i>  Выход</a></span></span>
+            </div>
+-->
+
+
             <div class="app" style=" display: grid;
                  grid-column-gap: 15px;
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >

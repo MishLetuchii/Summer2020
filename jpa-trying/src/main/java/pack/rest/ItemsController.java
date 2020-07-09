@@ -23,6 +23,7 @@ public class ItemsController {
     @Autowired
     private CategoriesRepository categoriesRepository;
 
+
     @GetMapping(value = "/categories/{categoryId}/items")
     public List<Items> getAllItems(@PathVariable Long categoryId) {
         Optional<Categories> categoryOptional = categoriesRepository.findById(categoryId);
