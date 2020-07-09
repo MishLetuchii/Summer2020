@@ -15,8 +15,7 @@
             <a th:href="@{/adm/items/add}">Добавить товар</a>
             <a th:href="@{/adm/categories/change/{ctgId}(ctgId=${category.getId()})}" >Редактировать категорию</a>
             <a th:href="@{/adm/categories/delete/{ctgId}(ctgId=${category.getId()})}" >Удалить категорию</a>
-            <div class="app" style="
-                 display: grid;
+            <div class="app" style=" display: grid;
                  grid-column-gap: 15px;
                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));" >
                 <div th:each="item: ${items}">

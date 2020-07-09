@@ -9,9 +9,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import pack.domain.Categories;
-import pack.domain.User;
 import pack.repositories.CategoriesRepository;
-import pack.repositories.UsersRepository;
+import org.springframework.ui.Model;
 
 
 @RestController
@@ -25,16 +24,6 @@ public class CategoriesController {
 
         return categoriesRepository.findAll();
     }
-
-    @Autowired
-    private UsersRepository usersRepository;
-
-    @GetMapping(value = "/users")
-    public List<User> getAllUsers() {
-
-        return  usersRepository.findAll();
-    }
-
 
     @GetMapping(value = "/categories/{categoryId}")
     public Categories getCategoryByID(@PathVariable Long categoryId) {
