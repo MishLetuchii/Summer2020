@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
+<head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+</head>
+<body>
+
+
+<div class="row">
+    <div class="col-1">
+        <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
+        <h3 align="center">Список зарегистрированных пользователей</h3>
+        <div th:insert="~{AuthorizationFragment :: authFragment}"></div>
+        <div> <a class="btn btn-primary" th:href="@{/adm}">На главную</a>&nbsp;&nbsp;
+        </div>
+            <table align="center">
+                <tr>
+                    <td>Имя пользователя </td>
+                    <td>Роль</td>
+                    <td>Действие</td>
+                </tr>
+            <div th:each="user: ${users}" >
+                <div>
+
+                            <tr>
+                                <td th:text="${user.getUserName()}"></td>
+                                <td th:text="${user.getRoles()}"></td>
+                                <td><a th:href="@{/adm/users/delete/{userId}(userId=${user.getId()})}">Удалить пользователя</a></td>
+                            </tr>
+
+                </div>
+                </div>
+            </table>
+            </div>
+        </div>
+</div>
+</body>
+</html>

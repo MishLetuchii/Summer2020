@@ -1,12 +1,13 @@
-<!DOCTYPE html>
 <html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Изменение товара</title>
 </head>
 <body>
+<div th:insert="~{AuthorizationFragment :: authFragment}"></div>
 <form class="form-horizontal" enctype="multipart/form-data"
-      method="POST" th:action="@{/adm/items/change/{id}(id=${item.getId()})}" th:object="${item}">
+      method="POST" th:action="@{/adm/items/change/{id}(id=${item.getId()})}" th:object="${item}"
+      align="center">
     <div style="width: 40rem;">
         <table class="table-no-bordered">
             <tr style="margin-bottom:20px;">

@@ -9,6 +9,7 @@ public interface ItemsRepository extends CrudRepository<Items, Long> {
     List<Items> findByName(String name);// поиск по названию предмета
     List<Items> findByCategory(Categories category);//Поиск по категории
     Items findById(long id);//поиск по id предмета
+    List<Items> findAll();//Поиск всех товаров
 
     void deleteById(long id); //удаление по id предмета
 }
