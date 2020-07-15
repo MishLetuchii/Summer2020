@@ -29,9 +29,9 @@ public class AdminUsersController {
 
 
     @GetMapping(value = "/adm/users")
-    public String adminItemPage(Model model) {
+    public String adminUserPage(Model model) {
 
-        List<User> users = usersRepository.findAll();
+        List<User> users = usersRepository.findByRoles("ROLE_USER");
 
         model.addAttribute("users", users);
 

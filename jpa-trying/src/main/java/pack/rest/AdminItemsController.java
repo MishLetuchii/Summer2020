@@ -97,7 +97,11 @@ public class AdminItemsController {
         Categories ctg = helpitm.getCategory();
         item.setId(itemId);
         item.setCategory(ctg);
-        item.setImage(file.getBytes());
+        if (!file.isEmpty()) {
+            item.setImage(file.getBytes());
+        } else {
+            item.setImage(helpitm.getImage());
+        }
         itemsRepository.save(item);
         redirectAttributes.addAttribute("ctgId", ctg.getId());
 

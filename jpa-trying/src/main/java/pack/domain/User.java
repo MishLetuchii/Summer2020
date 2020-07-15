@@ -1,6 +1,8 @@
 package pack.domain;
 
 import com.sun.istack.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
@@ -57,7 +59,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-
         this.password = password;
     }
 

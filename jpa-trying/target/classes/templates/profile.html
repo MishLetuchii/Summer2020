@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+<div sec:authorize="!isAuthenticated()" style="text-align: right;margin-right: 20px;">
+    <div>
+        <div><a>Вы не авторизованы.</a></div>
+        <span><a class="btn btn-primary" th:href="@{/login}"><i aria-hidden="true" class="fas fa-sign-in-alt"></i>  Вход</a></span>&nbsp;&nbsp
+        <span><a class="btn btn-primary" th:href="@{/registration}"><i aria-hidden="true" class="fas fa-user-plus"></i>  Регистрация</a></span>
+    </div>
+</div>
+
+<div sec:authorize="isAuthenticated()" style="text-align: right;margin-right: 20px;">
+    <div>
+     <span>
+                 <span style="color: black">Вы вошли как:
+                    <b>
+                         <span sec:authentication="name"></span>
+                     </b>
+                 </span>&nbsp;&nbsp;
+                      <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <div>
+                         <a class="btn btn-primary" th:href="@{/adm}">На страницу администратора</a>&nbsp;&nbsp;
+                    </div>
+                 </div>
+             </span>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Выход"/>
+    </form>
+    </div>
+</div>
+</body>
+</html>

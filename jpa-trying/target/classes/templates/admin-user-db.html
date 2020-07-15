@@ -18,17 +18,17 @@
         </div>
             <table align="center">
                 <tr>
+                    <td>Id </td>
                     <td>Имя пользователя </td>
-                    <td>Роль</td>
                     <td>Действие</td>
                 </tr>
             <div th:each="user: ${users}" >
                 <div>
 
                             <tr>
+                                <td th:text="${user.getId()}"></td>
                                 <td th:text="${user.getUserName()}"></td>
-                                <td th:text="${user.getRoles()}"></td>
-                                <td><a th:href="@{/adm/users/delete/{userId}(userId=${user.getId()})}">Удалить пользователя</a></td>
+                                <td ><a th:href="@{/adm/users/delete/{userId}(userId=${user.getId()})}">Удалить пользователя</a></td>
                             </tr>
 
                 </div>

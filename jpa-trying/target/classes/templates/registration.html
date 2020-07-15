@@ -34,8 +34,9 @@
                 <div th:if="${#fields.hasErrors('userName')}">Имя пользователя уже занято</div>
                 <div th:if="${#fields.hasErrors('password')}">Пароли не совпадают</div>
                 <div align="center" style="margin-bottom:20px"><a class="btn btn-primary"
-                                                                  th:href="@{/main}">Назад</a>&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        class="btn btn-success" type="submit" value="Зарегистрироваться"/></div>
+                                                                  th:href="@{/main}">Назад</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <input class="btn btn-success" type="submit" value="Зарегистрироваться"/></div>
             </div>
 </form>
 </body>

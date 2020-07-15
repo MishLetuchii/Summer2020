@@ -96,7 +96,12 @@ public class AdminCategoriesController {
         List<Items> items = itemsRepository.findByCategory(helpCtg);
         ctg.setId(categoryId);
         ctg.setItems(items);
-        ctg.setImage(file.getBytes());
+
+        if (!file.isEmpty()) {
+            ctg.setImage(file.getBytes());
+        } else {
+            ctg.setImage(helpCtg.getImage());
+        }
         categoriesRepository.save(ctg);
 
         return "redirect:/adm/main";

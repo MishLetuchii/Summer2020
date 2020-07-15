@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface UsersRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByUserName(String userName);
+    List<User> findByRoles(String roles);
 
     List<User> findAll();
     void deleteById(long id);
