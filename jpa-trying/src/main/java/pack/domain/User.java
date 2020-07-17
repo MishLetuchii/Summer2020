@@ -3,6 +3,7 @@ package pack.domain;
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ public class User {
     private String roles;
     @NotNull
     private boolean isActive;
+
 
     public User() { }
 

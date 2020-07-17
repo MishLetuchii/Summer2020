@@ -32,5 +32,21 @@
     </form>
     </div>
 </div>
+<div>
+    <table class="table-no-bordered">
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr style="margin-bottom:20px; align-items: center">
+            <td>Ваш никнейм: &nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><span style="font-weight:bold; font-size:15px" th:utext="${user.getUserName()}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/profile/password-edit/{userId}(userId=${user.getId()})}" ></a></td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>

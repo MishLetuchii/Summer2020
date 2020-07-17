@@ -14,8 +14,10 @@ import pack.repositories.ItemsRepository;
 import org.springframework.ui.Model;
 import pack.repositories.UsersRepository;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AccountController {
@@ -34,5 +36,27 @@ public class AccountController {
         }
 
         return "profile";
+    }
+
+    @GetMapping(value = {"/profile/password-edit/{userId}"})
+    public String passwordCategoryPage(Model model, @PathVariable long userId) {
+
+        Optional<User> user =userRepository.findById(userId);
+        User us = user.get();
+        String oldPswd = us.getPassword();
+        model.addAttribute("oldPassword", oldPswd);
+        model.addAttribute("user", us);
+
+        return "passwordEdit";
+    }
+
+    @PostMapping(value = {"/profile/password-edit/{userId}"})
+    public String adminChangeCategory(Model model, @PathVariable long userId,
+         @ModelAttribute("oldPassword") long oldPswd, @ModelAttribute("user") @Valid User user) throws IOException {
+
+        if(user.getPassword())
+        userRepository.save(user);
+
+        return "redirect:/profile";
     }
 }
