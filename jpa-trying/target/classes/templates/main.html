@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="./grid.css">
 </head>
 <body>
-<div class="row">
+
+<div class="row" >
     <div class="col-1">
         <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
             <h3 align="center">Категории товаров</h3>
@@ -17,7 +18,7 @@
                 <div th:each="category: ${categories}">
                     <img height="100px" th:src="@{'data:image/jpeg;base64,'+${category.getImageString()}}" width="100px">&nbsp;&nbsp;
                     <div>
-                        <a th:href="@{/main/categories/{id}(id=${category.getId()})}" th:utext="${category.getName()}"></a>
+                        <a th:href="@{/main/categories/{id}(id=${category.getId()})}" th:utext="${category.getName()}" class="button"></a>
                     </div>
                 </div>
             </div>
