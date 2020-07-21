@@ -3,6 +3,8 @@ package pack.rest;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +29,7 @@ public class AccountController {
     private UsersRepository userRepository;
 
     @GetMapping(value = "/profile")
-    public String profilePage(Model model,  Authentication authentication) {
+    public String profilePage(Model model, Authentication authentication) {
 
 
         if (authentication != null) {
@@ -38,25 +40,34 @@ public class AccountController {
         return "profile";
     }
 
-    @GetMapping(value = {"/profile/password-edit/{userId}"})
-    public String passwordCategoryPage(Model model, @PathVariable long userId) {
+    @GetMapping(value = {"/profile/password-edit"})
+    public String passwordCategoryPage(Model model) {
 
-        Optional<User> user =userRepository.findById(userId);
-        User us = user.get();
-        String oldPswd = us.getPassword();
-        model.addAttribute("oldPassword", oldPswd);
-        model.addAttribute("user", us);
+        User user=new User();
+        model.addAttribute("user", user);
 
         return "passwordEdit";
     }
 
-    @PostMapping(value = {"/profile/password-edit/{userId}"})
-    public String adminChangeCategory(Model model, @PathVariable long userId,
-         @ModelAttribute("oldPassword") long oldPswd, @ModelAttribute("user") @Valid User user) throws IOException {
+    @PostMapping(value = {"/profile/password-edit"})
+    public String ChangePassword(Model model,Authentication authentication,
+                                      @ModelAttribute("user") @Valid User us, BindingResult bindingResult) throws IOException {
 
-        if(user.getPassword())
-        userRepository.save(user);
 
-        return "redirect:/profile";
+        if (!us.getPassword().equals(us.getCheckPassword())) {
+            bindingResult.rejectValue("password", "error.password", "Пароли не совпадают!");}
+
+            if (bindingResult.hasErrors()) {
+                return "redirect:/profile/password-edit";
+        } else {
+            User user = userRepository.findByUserName(authentication.getName()).get();
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            user.setPassword(passwordEncoder.encode(us.getPassword()));
+            user.setCheckPassword(passwordEncoder.encode(us.getCheckPassword()));
+            userRepository.save(user);
+
+            return "redirect:/profile";
+        }
     }
 }
+
