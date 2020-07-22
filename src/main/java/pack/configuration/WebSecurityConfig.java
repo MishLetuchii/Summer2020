@@ -39,19 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/main")
                 .permitAll()
                 .and()
                 .logout()
-<<<<<<< Updated upstream:src/main/java/pack/configuration/WebSecurityConfig.java
-                .logoutSuccessUrl("/")
-=======
-<<<<<<< HEAD:src/main/java/pack/configuration/WebSecurityConfig.java
                 .logoutSuccessUrl("/main")
-=======
-                .logoutSuccessUrl("/")
->>>>>>> 2e0c524a2a074a84d1dcc3d0d39df61bc45268c0:jpa-trying/src/main/java/pack/configuration/WebSecurityConfig.java
->>>>>>> Stashed changes:jpa-trying/src/main/java/pack/configuration/WebSecurityConfig.java
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-error");
