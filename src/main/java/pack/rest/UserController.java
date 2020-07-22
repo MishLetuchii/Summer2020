@@ -24,7 +24,7 @@ public class UserController {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    @GetMapping(value = "/main")
+    @GetMapping(value = "/")
     public String main(Model model) {
 
         List<Categories> categories = categoriesRepository.findAll();

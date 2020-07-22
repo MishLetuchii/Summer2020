@@ -65,9 +65,17 @@ public class SecurityController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
 
-            return  "redirect:/main";
+            return  "redirect:/";
         }
         }
     }
+
+    @GetMapping(value = {"/access-error"})
+    public String accessError(Model model) {
+
+
+        return "access-error";
+    }
+
 
 }
