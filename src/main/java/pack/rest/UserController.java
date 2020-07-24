@@ -2,18 +2,22 @@ package pack.rest;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pack.domain.Basket;
 import pack.domain.Categories;
 import pack.domain.Items;
+import pack.domain.User;
+import pack.repositories.BasketRepository;
 import pack.repositories.CategoriesRepository;
 import pack.repositories.ItemsRepository;
 import org.springframework.ui.Model;
+import pack.repositories.UsersRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -23,6 +27,10 @@ public class UserController {
     private CategoriesRepository categoriesRepository;
     @Autowired
     private ItemsRepository itemsRepository;
+    @Autowired
+    private UsersRepository userRepository;
+    @Autowired
+    private BasketRepository basketRepository;
 
     @GetMapping(value = "/main")
     public String main(Model model) {
@@ -64,4 +72,6 @@ public class UserController {
 
         return "selected-items";
     }
+
+
 }

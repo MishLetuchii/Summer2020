@@ -35,9 +35,11 @@ public class AccountController {
         if (authentication != null) {
             User user = userRepository.findByUserName(authentication.getName()).get();
             model.addAttribute("user", user);
+            return "profile";
         }
+        else return "redirect:/main";
 
-        return "profile";
+
     }
 
     @GetMapping(value = {"/profile/password-edit"})
@@ -52,7 +54,7 @@ public class AccountController {
     @PostMapping(value = {"/profile/password-edit"})
     public String ChangePassword(Model model,Authentication authentication,
                                       @ModelAttribute("user") @Valid User us, BindingResult bindingResult) throws IOException {
-
+        if (authentication != null) {
 
         if (!us.getPassword().equals(us.getCheckPassword())) {
             bindingResult.rejectValue("password", "error.password", "Пароли не совпадают!");}
@@ -68,6 +70,8 @@ public class AccountController {
 
             return "redirect:/profile";
         }
+        }
+        else return "redirect:/main";
     }
 }
 

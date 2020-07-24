@@ -30,6 +30,12 @@
                   <div sec:authorize="hasRole('ROLE_USER')">
                          <a class="btn btn-primary" th:href="@{/profile}">Личный кабинет</a>&nbsp;&nbsp;
                   </div>
+                  <div sec:authorize="hasRole('ROLE_USER')">
+                         <a class="btn btn-primary" th:href="@{/basket}">Корзина</a>&nbsp;&nbsp;
+                  </div>
+                 <div>
+                     <a  th:href="@{/main}">На главную страницу</a>
+                 </div>
              </span>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Выход"/>

@@ -30,6 +30,14 @@
             <span style="font-weight:bold; font-size:17px">Количество на складе:</span> <span
                 style="font-size:20px" th:utext="${item.getCount()}"></span><br><br>
         </div>
+        <form method="POST"
+              th:action="@{/main/addToBasket/items/{id}(id=${item.getId()})}">
+            <button class="btn btn-success btn-lg" th:if="${item.getCount()}>0"
+                    type="submit"><i aria-hidden="true"
+                                     class="fas fa-shopping-basket"></i> В
+                корзину
+            </button>
+        </form>
         <a  th:href="@{/main/categories/{CtgId}(CtgId=${item.getCategory().getId()})}">Назад</a>
         <a  th:href="@{/main}">На главную страницу</a>
     </div>

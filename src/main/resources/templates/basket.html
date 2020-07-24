@@ -1,0 +1,58 @@
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Компьютерные комплетующие</title>
+    <link rel="stylesheet" href="./grid.css">
+</head>
+<body>
+
+<div class="row" >
+    <div class="col-1">
+        <div class="category-wrap" style="margin-top:20px;margin-right:20px;margin-left:20px;">
+            <h3 align="center">Корзина предметов</h3>
+
+            <div th:insert="~{AuthorizationFragment :: authFragment}"></div>
+        </div>
+    <div align="center">
+        <tr>
+            <td >Название</td>
+            <td >Количество</td>
+            <td >Стоимость</td>
+        </tr>
+        <div th:each="position: ${basket.getBasket_items()}" >
+            <div>
+                <tr>
+                    <td th:text="${position.getThing().getName()}"></td>
+                    <td th:text="${position.getCount()}"></td>
+                    <td th:text="${position.getTotalPrice()}"></td>
+
+                        <form method="POST"
+                                th:action="@{/basket/addInBasket/items/{id}(id=${position.getThing().getId()})}">
+                        <button class="btn btn-success btn-lg"
+                                type="submit"><i aria-hidden="true"
+                                                 class="fas fa-shopping-basket">+</i>
+                        </button>
+                    </form>
+                    <form method="POST"
+                          th:action="@{/basket/removeFromBasket/items/{id}(id=${position.getThing().getId()})}">
+                        <button class="btn btn-success btn-lg" th:if="${position.getCount()}>0"
+                                type="submit"><i aria-hidden="true"
+                                                 class="fas fa-shopping-basket">-</i>
+                        </button>
+                    </form>
+                </tr>
+
+            </div>
+        </div>
+        <a>Всего: </a><a th:text="${basket.getTotalPrice()}"></a>
+       <!-- <form method="POST"
+              th:action="@{/basket/clear}">
+            <button class="btn btn-success btn-lg"
+                    type="submit"><i aria-hidden="true"
+                                     class="fas fa-shopping-basket">Очистить корзину</i>
+            </button>
+        </form>-->
+    </div>
+    </div>
+</div>
+</body>
+</html>

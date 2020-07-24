@@ -1,11 +1,11 @@
 package pack.domain;
 
 import com.sun.istack.NotNull;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import java.util.List;
 
 import javax.persistence.*;
+import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -24,8 +24,11 @@ public class User {
     @NotNull
     private boolean isActive;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Basket basket;
 
-    public User() { }
+    public User() {
+    }
 
     public boolean isActive() {
         return isActive;
@@ -83,6 +86,21 @@ public class User {
 
         this.checkPassword = checkPassword;
     }
+
+
+    public Basket getBasket() {
+        if (basket==null) {
+            basket= new Basket();
+            basket.setUser(this);
+        }
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
+
+
 
 
     @Override

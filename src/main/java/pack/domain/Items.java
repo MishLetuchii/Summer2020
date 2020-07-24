@@ -4,6 +4,7 @@ package pack.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Items {
@@ -27,6 +28,10 @@ public class Items {
     @ManyToOne()
     @JoinColumn(name = "CATEGORY_ID_F", nullable = false)
     private Categories category; //категория, к которой относится предмет, связь один-ко-многим (категории-предметы)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "thing", cascade = CascadeType.ALL)
+    private List<Position> Positions;
 
     public Items() {} //Конструктор, необходим для JPA
 
