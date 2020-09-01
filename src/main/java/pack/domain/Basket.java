@@ -21,11 +21,8 @@ public class Basket {
             fetch = FetchType.EAGER)
     private List<Position> basket_items;
 
-    private float totalPrice;
-
     public Basket() {
     }
-
 
     public long getId() {
         return id;
@@ -52,38 +49,29 @@ public class Basket {
     }
 
     public float getTotalPrice() {
+        float totalPrice=0;
+        for (Position elem:this.basket_items) {
+            totalPrice+=elem.getTotalPrice();
+        }
         return totalPrice;
-    }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    private void addTotalPrice(float sum)
-    {
-        totalPrice=totalPrice+sum;
-    }
-
-    private void subTotalPrice(float sum)
-    {
-        totalPrice=totalPrice-sum;
     }
 
     public void removeItemFromBasket(Items item)
     {
-        boolean deleted = false;
+
+      boolean deleted = false;
         Position el=null;
-            for (Position elem:this.basket_items) {
-                if (elem.getThing().getId() == item.getId()) {
-                    elem.decCount();
-                    if (elem.getCount() < 1) {
-                     el=elem;
+            for (Position elem:this.basket_items) { //ищем нужную позицию товара в списке
+                if (elem.getThing().getId()==item.getId()) {
+                    elem.decCount();                //уменьшаем количество товаров в позиции
+
+                    if (elem.getCount() < 1) {  //если количество товаров меньше единицы
+                     el=elem;                   //запоминаем этот элемент
                      deleted = true;
                     }
                 }
             }
-            if(deleted==true) this.basket_items.remove(el);
-            this.subTotalPrice(item.getPrice());
+            if(deleted==true) this.basket_items.remove(el);//удаляем этот элемент, когда выйдем из цикла
     }
 
     public void addItemToBasket(Items item)
@@ -103,7 +91,6 @@ public class Basket {
             basket_items.add(new Position(item,1,this));
 
         }
-        this.addTotalPrice(item.getPrice());
     }
 
 }

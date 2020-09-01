@@ -25,25 +25,28 @@ import java.util.Optional;
 public class AccountController {
 
 
-    @Autowired
+
     private UsersRepository userRepository;
+    @Autowired
+    public AccountController(UsersRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping(value = "/profile")
     public String profilePage(Model model, Authentication authentication) {
 
-
         if (authentication != null) {
             User user = userRepository.findByUserName(authentication.getName()).get();
-            model.addAttribute("user", user);
-            return "profile";
+            if (user != null){
+                model.addAttribute("user", user);
+                return "profile";}
+            else return "redirect:/main";
         }
         else return "redirect:/main";
-
-
     }
 
     @GetMapping(value = {"/profile/password-edit"})
-    public String passwordCategoryPage(Model model) {
+    public String changePasswordPage(Model model) {
 
         User user=new User();
         model.addAttribute("user", user);
@@ -52,7 +55,7 @@ public class AccountController {
     }
 
     @PostMapping(value = {"/profile/password-edit"})
-    public String ChangePassword(Model model,Authentication authentication,
+    public String changePassword(Model model,Authentication authentication,
                                       @ModelAttribute("user") @Valid User us, BindingResult bindingResult) throws IOException {
         if (authentication != null) {
 
@@ -65,7 +68,6 @@ public class AccountController {
             User user = userRepository.findByUserName(authentication.getName()).get();
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             user.setPassword(passwordEncoder.encode(us.getPassword()));
-            user.setCheckPassword(passwordEncoder.encode(us.getCheckPassword()));
             userRepository.save(user);
 
             return "redirect:/profile";

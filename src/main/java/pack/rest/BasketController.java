@@ -22,13 +22,19 @@ import java.util.List;
 
 @Controller
 public class BasketController {
-    @Autowired
+
+
+
     private UsersRepository userRepository;
-    @Autowired
     private BasketRepository basketRepository;
-    @Autowired
     private ItemsRepository itemsRepository;
 
+    @Autowired
+    public BasketController(UsersRepository userRepository, BasketRepository basketRepository, ItemsRepository itemsRepository) {
+        this.userRepository = userRepository;
+        this.basketRepository = basketRepository;
+        this.itemsRepository = itemsRepository;
+    }
 
     @GetMapping(value = "/basket")
     public String basketPage(Model model,

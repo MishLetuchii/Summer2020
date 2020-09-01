@@ -18,8 +18,15 @@ import java.util.Locale;
 @Controller
 public class SecurityController {
 
-    @Autowired
+
+
     private UsersRepository userRepository;
+    @Autowired
+    public SecurityController(UsersRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+
 
     @GetMapping(value = "/login")
     public String loginPage(Model model) {

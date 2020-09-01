@@ -17,12 +17,16 @@ import java.util.Optional;
 @RestController
 public class ItemsController {
 
-    @Autowired
+
     private ItemsRepository itemsRepository;
 
-    @Autowired
     private CategoriesRepository categoriesRepository;
 
+    @Autowired
+    public ItemsController(ItemsRepository itemsRepository, CategoriesRepository categoriesRepository) {
+        this.itemsRepository = itemsRepository;
+        this.categoriesRepository = categoriesRepository;
+    }
 
     @GetMapping(value = "/categories/{categoryId}/items")
     public List<Items> getAllItems(@PathVariable Long categoryId) {

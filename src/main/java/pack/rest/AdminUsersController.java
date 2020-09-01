@@ -20,13 +20,16 @@ import java.util.List;
 @Controller
 public class AdminUsersController {
 
-    @Autowired
     private CategoriesRepository categoriesRepository;
-    @Autowired
     private ItemsRepository itemsRepository;
-    @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    public AdminUsersController(CategoriesRepository categoriesRepository, ItemsRepository itemsRepository, UsersRepository usersRepository) {
+        this.categoriesRepository = categoriesRepository;
+        this.itemsRepository = itemsRepository;
+        this.usersRepository = usersRepository;
+    }
 
     @GetMapping(value = "/adm/users")
     public String adminUserPage(Model model) {

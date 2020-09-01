@@ -23,14 +23,19 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Autowired
+
     private CategoriesRepository categoriesRepository;
-    @Autowired
     private ItemsRepository itemsRepository;
-    @Autowired
     private UsersRepository userRepository;
-    @Autowired
     private BasketRepository basketRepository;
+
+    @Autowired
+    public UserController(CategoriesRepository categoriesRepository, ItemsRepository itemsRepository, UsersRepository userRepository, BasketRepository basketRepository) {
+        this.categoriesRepository = categoriesRepository;
+        this.itemsRepository = itemsRepository;
+        this.userRepository = userRepository;
+        this.basketRepository = basketRepository;
+    }
 
     @GetMapping(value = "/main")
     public String main(Model model) {

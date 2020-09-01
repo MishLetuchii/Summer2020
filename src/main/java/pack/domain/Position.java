@@ -41,6 +41,8 @@ public class Position {
         this.updTotalPrice();
     }
 
+
+
     public Items getThing() {
         return thing;
     }
@@ -63,5 +65,10 @@ public class Position {
 
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public boolean equals(Items item)
+    {
+        return this.getThing().getId()==item.getId();
     }
 }

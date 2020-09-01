@@ -19,12 +19,14 @@ import java.util.List;
 @Controller
 public class AdminItemsController {
 
-    @Autowired
     private CategoriesRepository categoriesRepository;
-    @Autowired
     private ItemsRepository itemsRepository;
 
-
+    @Autowired
+    public AdminItemsController(CategoriesRepository categoriesRepository, ItemsRepository itemsRepository) {
+        this.categoriesRepository = categoriesRepository;
+        this.itemsRepository = itemsRepository;
+    }
 
     @GetMapping(value = "/adm/main/items/{ItemId}")
     public String adminItemPage(Model model,@PathVariable long ItemId) {

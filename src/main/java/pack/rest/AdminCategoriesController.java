@@ -10,6 +10,7 @@ import pack.domain.Items;
 import pack.repositories.CategoriesRepository;
 import pack.repositories.ItemsRepository;
 import org.springframework.ui.Model;
+import pack.repositories.UsersRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,10 +19,14 @@ import java.util.List;
 @Controller
 public class AdminCategoriesController {
 
-    @Autowired
     private CategoriesRepository categoriesRepository;
-    @Autowired
     private ItemsRepository itemsRepository;
+
+    @Autowired
+    public AdminCategoriesController(CategoriesRepository categoriesRepository, ItemsRepository itemsRepository) {
+        this.categoriesRepository = categoriesRepository;
+        this.itemsRepository = itemsRepository;
+    }
 
     @GetMapping(value = "/adm/main")
     public String main(Model model) {

@@ -17,8 +17,14 @@ import pack.repositories.UsersRepository;
 @RestController
 public class CategoriesController {
 
-    @Autowired
+
+    private UsersRepository usersRepository;
     private CategoriesRepository categoriesRepository;
+    @Autowired
+    public CategoriesController(UsersRepository usersRepository, CategoriesRepository categoriesRepository) {
+        this.usersRepository = usersRepository;
+        this.categoriesRepository = categoriesRepository;
+    }
 
     @GetMapping(value = "/categories")
     public List<Categories> getAllCategories() {
@@ -26,8 +32,7 @@ public class CategoriesController {
         return categoriesRepository.findAll();
     }
 
-    @Autowired
-    private UsersRepository usersRepository;
+
 
     @GetMapping(value = "/users")
     public List<User> getAllUsers() {

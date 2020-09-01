@@ -29,7 +29,8 @@
             <span th:utext="${item.getDescription()}"></span><br><br>
             <span style="font-weight:bold; font-size:17px">Количество на складе:</span> <span
                 style="font-size:20px" th:utext="${item.getCount()}"></span><br><br>
-        </div>
+        </div >
+        <div sec:authorize="isAuthenticated()">
         <form method="POST"
               th:action="@{/main/addToBasket/items/{id}(id=${item.getId()})}">
             <button class="btn btn-success btn-lg" th:if="${item.getCount()}>0"
@@ -38,6 +39,7 @@
                 корзину
             </button>
         </form>
+        </div>
         <a  th:href="@{/main/categories/{CtgId}(CtgId=${item.getCategory().getId()})}">Назад</a>
         <a  th:href="@{/main}">На главную страницу</a>
     </div>

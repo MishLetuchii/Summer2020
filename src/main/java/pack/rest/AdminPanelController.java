@@ -17,13 +17,17 @@ import java.util.List;
 @Controller
 public class AdminPanelController {
 
-    @Autowired
-    private CategoriesRepository categoriesRepository;
-    @Autowired
+
+   /* private CategoriesRepository categoriesRepository;
     private ItemsRepository itemsRepository;
-    @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    public AdminPanelController(CategoriesRepository categoriesRepository, ItemsRepository itemsRepository, UsersRepository usersRepository) {
+        this.categoriesRepository = categoriesRepository;
+        this.itemsRepository = itemsRepository;
+        this.usersRepository = usersRepository;
+    }*/
 
 
     @GetMapping(value = "/adm")
