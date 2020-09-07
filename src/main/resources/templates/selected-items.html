@@ -35,8 +35,7 @@
               th:action="@{/main/addToBasket/items/{id}(id=${item.getId()})}">
             <button class="btn btn-success btn-lg" th:if="${item.getCount()}>0"
                     type="submit"><i aria-hidden="true"
-                                     class="fas fa-shopping-basket"></i> В
-                корзину
+                                     class="fas fa-shopping-basket"></i> В корзину
             </button>
         </form>
         </div>

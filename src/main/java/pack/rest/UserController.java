@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pack.DTOs.CategoriesDTO;
+import pack.DTOs.ItemsDTO;
 import pack.domain.Basket;
 import pack.domain.Categories;
 import pack.domain.Items;
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import pack.repositories.UsersRepository;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,12 +43,19 @@ public class UserController {
     @GetMapping(value = "/main")
     public String main(Model model) {
 
+        CategoriesDTO helpDTO=new CategoriesDTO();
+        List<CategoriesDTO> categoriesDTO=new ArrayList<CategoriesDTO>();
         List<Categories> categories = categoriesRepository.findAll();
+
         for (Categories category : categories) {
             byte[] image = category.getImage();
             category.setImageString(Base64.encodeBase64String(image));
+            helpDTO.setName(category.getName());
+            helpDTO.setId(category.getId());
+            helpDTO.setImageString(category.getImageString());
+            categoriesDTO.add(new CategoriesDTO(helpDTO));
         }
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories", categoriesDTO);
 
         return "main";
     }
@@ -53,14 +63,27 @@ public class UserController {
     @GetMapping(value = "/main/categories/{CtgId}")
     public String userCategoriesPage(Model model, @PathVariable long CtgId) {
 
+        ItemsDTO itemDTO = new ItemsDTO();
+        List<ItemsDTO> itemsDTOS = new ArrayList<ItemsDTO>();
+
         Categories categ = categoriesRepository.findById(CtgId);
+        CategoriesDTO categDTO = new CategoriesDTO();
+        categDTO.setName(categ.getName());
+        categDTO.setId(categ.getId());
+        categDTO.setDescription(categ.getDescription());
+
         List<Items> items= itemsRepository.findByCategory(categ);
         for (Items item : items) {
             byte[] image = item.getImage();
             item.setImageString(Base64.encodeBase64String(image));
+            itemDTO.setImageString(item.getImageString());
+            itemDTO.setName(item.getName());
+            itemDTO.setId(item.getId());
+            itemDTO.setPrice(item.getPrice());
+            itemsDTOS.add(new ItemsDTO(itemDTO));
         }
-        model.addAttribute("items", items);
-        model.addAttribute("category",categ);
+        model.addAttribute("items", itemsDTOS);
+        model.addAttribute("category",categDTO);
 
 
         return "user-main-ctg";
@@ -73,7 +96,8 @@ public class UserController {
         Items item= itemsRepository.findById(ItemId);
         byte[] image = item.getImage();
         item.setImageString(Base64.encodeBase64String(image));
-        model.addAttribute("item", item);
+        ItemsDTO itemDTO = new ItemsDTO(item);
+        model.addAttribute("item", itemDTO);
 
         return "selected-items";
     }

@@ -10,18 +10,12 @@ public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;//Id категории, генерируем автоматически
-
     private String name;//название категории
     private String description;//описание категории
-
     @Lob
     private byte[] image;
     @Transient
     private String imageString;
-
-
-
-
     //@JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)//все операции изменения в коллекции=изменения в бд

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pack.DTOs.ItemsDTO;
 import pack.domain.Categories;
 import pack.domain.Items;
 import pack.repositories.CategoriesRepository;
@@ -34,7 +35,8 @@ public class AdminItemsController {
         Items item= itemsRepository.findById(ItemId);
         byte[] image = item.getImage();
         item.setImageString(Base64.encodeBase64String(image));
-        model.addAttribute("item", item);
+        ItemsDTO itemDTO = new ItemsDTO(item);
+        model.addAttribute("item", itemDTO);
 
         return "admin-selected-items";
     }

@@ -20,6 +20,7 @@ public class Basket {
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     private List<Position> basket_items;
+    float totalPrice;
 
     public Basket() {
     }
@@ -49,12 +50,17 @@ public class Basket {
     }
 
     public float getTotalPrice() {
-        float totalPrice=0;
+        return totalPrice;
+    }
+
+    public void updTotalPrice() {
+        this.totalPrice=0;
         for (Position elem:this.basket_items) {
             totalPrice+=elem.getTotalPrice();
         }
-        return totalPrice;
+
     }
+
 
     public void removeItemFromBasket(Items item)
     {
@@ -72,6 +78,7 @@ public class Basket {
                 }
             }
             if(deleted==true) this.basket_items.remove(el);//удаляем этот элемент, когда выйдем из цикла
+        this.updTotalPrice();//пересчитываем стоимость корзины
     }
 
     public void addItemToBasket(Items item)
@@ -91,6 +98,7 @@ public class Basket {
             basket_items.add(new Position(item,1,this));
 
         }
+        this.updTotalPrice();
     }
 
 }

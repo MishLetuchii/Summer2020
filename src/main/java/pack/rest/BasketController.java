@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pack.DTOs.BasketDTO;
 import pack.domain.Basket;
 import pack.domain.Items;
 import pack.domain.Position;
@@ -39,12 +40,18 @@ public class BasketController {
     @GetMapping(value = "/basket")
     public String basketPage(Model model,
                              Authentication authentication) {
-        if(authentication!= null){
-        User user = userRepository.findByUserName(authentication.getName()).get();
-        Basket basket = user.getBasket();
-        model.addAttribute("basket", basket);
-        return "basket";
-    }
+        if(authentication!= null)
+        {
+         User user = userRepository.findByUserName(authentication.getName()).get();
+            if (user != null)
+                {
+                Basket basket = user.getBasket();
+                model.addAttribute("basket", basket);
+                return "basket";
+                }
+            else return "redirect:/main";
+        }
+
         else return "redirect:/main";
     }
 
@@ -53,6 +60,7 @@ public class BasketController {
         redirectAttributes.addAttribute("itemId", itemId);
         return "redirect:/main/items/{itemId}";
     }
+
     @PostMapping(value = {"/main/addToBasket/items/{itemId}"})
     public String addItemToBasket(Model model, RedirectAttributes redirectAttributes, @PathVariable long itemId,
                                   Authentication authentication) throws IOException {
@@ -71,6 +79,7 @@ public class BasketController {
     public String addItemInBasketPage(Model model, @PathVariable long itemId) {
                return "redirect:/basket";
     }
+
     @PostMapping(value = {"/basket/addInBasket/items/{itemId}"})
     public String addItemInBasket(Model model, RedirectAttributes redirectAttributes, @PathVariable long itemId,
                                   Authentication authentication) throws IOException {
@@ -87,6 +96,7 @@ public class BasketController {
 
         return "redirect:/basket";
     }
+
     @PostMapping(value = {"/basket/removeFromBasket/items/{itemId}"})
     public String removeItemFromBasket(Model model,  @PathVariable long itemId,
                                   Authentication authentication) throws IOException {

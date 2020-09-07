@@ -22,7 +22,8 @@ public class SecurityController {
 
     private UsersRepository userRepository;
     @Autowired
-    public SecurityController(UsersRepository userRepository) {
+    public SecurityController(UsersRepository userRepository)
+    {
         this.userRepository = userRepository;
     }
 

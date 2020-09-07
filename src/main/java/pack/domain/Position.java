@@ -67,8 +67,17 @@ public class Position {
         this.totalPrice = totalPrice;
     }
 
-    public boolean equals(Items item)
-    {
-        return this.getThing().getId()==item.getId();
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (obj instanceof Items)
+        {
+            Items item = (Items) obj;
+            return item.getId()==this.id;
+        }
+        if (!(obj instanceof Position)) return false;
+        Position pos = (Position) obj;
+        return pos.id == this.id;
     }
 }

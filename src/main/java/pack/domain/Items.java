@@ -111,6 +111,13 @@ public class Items {
 
     public void setImageString(String imageString) { this.imageString = imageString;  }
 
+    public List<Position> getPositions() {
+        return Positions;
+    }
+
+    public void setPositions(List<Position> positions) {
+        Positions = positions;
+    }
 
     @Override
     public String toString() {
@@ -118,4 +125,5 @@ public class Items {
                 "Items[id=%d, articul='%s', name='%s', count='%d', price='%f', description='%s', category='%s']",
                 id, articul, name, count, price, description, category.getName());
     }
+
 }

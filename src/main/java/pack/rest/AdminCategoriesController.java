@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
+import pack.DTOs.CategoriesDTO;
+import pack.DTOs.ItemsDTO;
 import pack.domain.Categories;
 import pack.domain.Items;
 import pack.repositories.CategoriesRepository;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import pack.repositories.UsersRepository;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,13 +34,19 @@ public class AdminCategoriesController {
     @GetMapping(value = "/adm/main")
     public String main(Model model) {
 
+        CategoriesDTO helpDTO=new CategoriesDTO();
+        List<CategoriesDTO> categoriesDTO=new ArrayList<CategoriesDTO>();
         List<Categories> categories = categoriesRepository.findAll();
 
         for (Categories category : categories) {
             byte[] image = category.getImage();
             category.setImageString(Base64.encodeBase64String(image));
+            helpDTO.setName(category.getName());
+            helpDTO.setId(category.getId());
+            helpDTO.setImageString(category.getImageString());
+            categoriesDTO.add(new CategoriesDTO(helpDTO));
         }
-        model.addAttribute("categories", categories);
+        model.addAttribute("categories", categoriesDTO);
 
         return "admin-main";
     }
@@ -45,14 +54,27 @@ public class AdminCategoriesController {
     @GetMapping(value = "/adm/main/categories/{CtgId}")
     public String adminCategoriesPage(Model model, @PathVariable long CtgId) {
 
+        ItemsDTO itemDTO = new ItemsDTO();
+        List<ItemsDTO> itemsDTOS = new ArrayList<ItemsDTO>();
+
         Categories categ = categoriesRepository.findById(CtgId);
+        CategoriesDTO categDTO = new CategoriesDTO();
+        categDTO.setName(categ.getName());
+        categDTO.setId(categ.getId());
+        categDTO.setDescription(categ.getDescription());
+        
         List<Items> items= itemsRepository.findByCategory(categ);
         for (Items item : items) {
             byte[] image = item.getImage();
             item.setImageString(Base64.encodeBase64String(image));
+            itemDTO.setImageString(item.getImageString());
+            itemDTO.setName(item.getName());
+            itemDTO.setId(item.getId());
+            itemDTO.setPrice(item.getPrice());
+            itemsDTOS.add(new ItemsDTO(itemDTO));
         }
-        model.addAttribute("items", items);
-        model.addAttribute("category",categ);
+        model.addAttribute("items", itemsDTOS);
+        model.addAttribute("category",categDTO);
 
         return "admin-main-ctg";
     }

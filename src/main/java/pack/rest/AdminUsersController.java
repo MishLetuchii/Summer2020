@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pack.DTOs.UserDTO;
 import pack.domain.Items;
 import pack.domain.User;
 import pack.repositories.CategoriesRepository;
 import pack.repositories.ItemsRepository;
 import pack.repositories.UsersRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,8 +37,16 @@ public class AdminUsersController {
     public String adminUserPage(Model model) {
 
         List<User> users = usersRepository.findAll();//findByRoles("ROLE_USER");
+        List<UserDTO> userDTOS = new ArrayList<UserDTO>();
+        UserDTO userDTO=new UserDTO();
 
-        model.addAttribute("users", users);
+        for (User user : users) {
+            userDTO.setUserName(user.getUserName());
+            userDTO.setId(user.getId());
+            userDTOS.add(new UserDTO(userDTO));
+        }
+
+        model.addAttribute("users", userDTOS);
 
         return "admin-user-db";
     }

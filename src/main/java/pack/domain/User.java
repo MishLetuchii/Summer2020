@@ -87,6 +87,10 @@ public class User {
         this.checkPassword = checkPassword;
     }
 
+    public void clearBasket()
+    {
+        basket.setBasket_items(null);
+    }
 
     public Basket getBasket() {
         if (basket==null) {
