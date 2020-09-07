@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Locale;
 
 
 @Controller
@@ -59,7 +58,7 @@ public class SecurityController {
         }
 
         for (User curUser : userList) {
-            if (user.getUserName().equals(curUser.getUserName())) {
+            if (user.getUsername().equals(curUser.getUsername())) {
                 bindingResult.rejectValue("userName", "error.userName", "Пользователь с таким никнейном уже зарегистрирован!");
             }
         }

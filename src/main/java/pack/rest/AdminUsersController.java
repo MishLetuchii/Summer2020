@@ -1,7 +1,6 @@
 package pack.rest;
 
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pack.DTOs.UserDTO;
-import pack.domain.Items;
 import pack.domain.User;
 import pack.repositories.CategoriesRepository;
 import pack.repositories.ItemsRepository;
@@ -41,7 +39,7 @@ public class AdminUsersController {
         UserDTO userDTO=new UserDTO();
 
         for (User user : users) {
-            userDTO.setUserName(user.getUserName());
+            userDTO.setUserName(user.getUsername());
             userDTO.setId(user.getId());
             userDTOS.add(new UserDTO(userDTO));
         }
