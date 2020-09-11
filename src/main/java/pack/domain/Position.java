@@ -66,7 +66,7 @@ public class Position {
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }
-
+/*
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
@@ -79,5 +79,5 @@ public class Position {
         if (!(obj instanceof Position)) return false;
         Position pos = (Position) obj;
         return pos.id == this.id;
-    }
+    }*/
 }

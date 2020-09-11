@@ -20,7 +20,9 @@ public class Basket {
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     private List<Position> basket_items;
-    //private float totalPrice;
+    private float totalPrice;
+    //Целиком отказаться от поля не получилось - при создании новых учетных записей требуется значение поля totalPrice
+    //Пришлось оставить само поле
 
     public Basket() {
     }
@@ -51,45 +53,50 @@ public class Basket {
 
     public float getTotalPrice() {
     float totalPrice=0;
-        for (Position elem:this.basket_items) {
-            totalPrice+=elem.getTotalPrice();
+    if (this.basket_items!= null) {
+        for (Position elem : this.basket_items) {
+            totalPrice += elem.getTotalPrice();
         }
+    }
     return totalPrice;
     }
 
-
+    //К сожалению, упростить эти методы не вышло
     public void removeItemFromBasket(Items item)
     {
 
       boolean deleted = false;
         Position el=null;
-            for (Position elem:this.basket_items) { //ищем нужную позицию товара в списке
-                if (elem.getThing().getId()==item.getId()) {
-                    elem.decCount();                //уменьшаем количество товаров в позиции
+            for (Position elem:this.basket_items) {         //ищем нужную позицию товара в списке
+                if (elem.getThing().getId()==item.getId()) {//позицию определяем, сравнивая Id товара в позиции и Id удаляемого товара
+                    elem.decCount();                        //уменьшаем количество товаров в позиции
 
-                    if (elem.getCount() < 1) {  //если количество товаров меньше единицы
-                     el=elem;                   //запоминаем этот элемент
+                    if (elem.getCount() < 1) {              //если количество товаров меньше единицы
+                     el=elem;                               //запоминаем этот элемент
                      deleted = true;
                     }
+                    break;                                  //выход из цикла, когда нашли нужный товар
                 }
             }
-            if(deleted==true) this.basket_items.remove(el);//удаляем этот элемент, когда выйдем из цикла
+            if(deleted==true) this.basket_items.remove(el); //удаляем  элемент, если счетчик меньше нуля когда выйдем из цикла
 
     }
 
     public void addItemToBasket(Items item)
     {
-        boolean checkItem = false;
+        boolean checkItem = false;                          //если списка товаров еще нет- добавляем его
         if(basket_items==null)
             basket_items=new ArrayList<>();
 
-        for (Position elem:this.basket_items) {
-            if(elem.getThing().getId()==item.getId()){
-                elem.incCount();
-                checkItem=true;
+        for (Position elem:this.basket_items) {             //ищем элемент в списке
+            if(elem.getThing().getId()==item.getId()){      //Сравнивая id товара в позиции и Id добавляемого товара
+                elem.incCount();                            //увеличиваем счетчик в позиции
+                checkItem=true;                             //запоминаем, если товар нашелся
+                break;                                      //Выход из цикла, когда нашли нужный товар
             }
+
         }
-        if (checkItem==false)
+        if (checkItem==false)                               //если товар не нашелся, то добавляем новый
         {
             basket_items.add(new Position(item,1,this));
 
